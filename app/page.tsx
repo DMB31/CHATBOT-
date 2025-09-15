@@ -218,9 +218,6 @@ export default function Page() {
                 placeholder="Posez votre question..."
                 className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-3 pr-12 text-[15px] outline-none transition focus:border-brand.teal focus:bg-white sm:px-4 sm:text-sm"
               />
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">
-                Entrée pour envoyer
-              </div>
             </div>
             <button
               onClick={sendMessage}
