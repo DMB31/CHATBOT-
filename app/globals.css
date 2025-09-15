@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand-orange: #FF6F00;
+  --color-brand-teal: #004D40;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-gray-900;
+}
+
+/* Smooth scrolling for new messages */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for desktop */
+@media (min-width: 768px) {
+  .nice-scrollbar::-webkit-scrollbar {
+    width: 10px;
+  }
+  .nice-scrollbar::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+  .nice-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #B2DFDB;
+    border-radius: 20px;
+    border: 2px solid #f0f0f0;
+  }
+}
+
+
+
