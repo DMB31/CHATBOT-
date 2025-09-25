@@ -103,10 +103,10 @@ export default function Page() {
       <main className="mx-auto flex w-full max-w-5xl grow flex-col px-0 sm:px-4">
         <div
           ref={scrollRef}
-          className="nice-scrollbar scroll-smooth grow overflow-y-auto px-3 py-4 sm:px-6 sm:py-6"
+          className="nice-scrollbar scroll-smooth grow overflow-y-auto px-2 py-3 sm:px-4 sm:py-4"
           style={{ paddingBottom: `calc(${composerHeight}px + env(safe-area-inset-bottom, 0px) + 8px)` }}
         >
-          <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 sm:gap-4">
+          <div className="mx-auto flex w-full max-w-3xl flex-col gap-2 sm:gap-3">
             <AnimatePresence initial={false}>
               {messages.map((m) => (
                 <motion.div
@@ -120,20 +120,20 @@ export default function Page() {
                   }`}
                 >
                   <div
-                    className={`rounded-2xl px-3.5 py-3 text-[15px] shadow-soft ${
+                    className={`rounded-2xl px-3.5 py-3 text-[15px] shadow-soft border ${
                       m.role === "assistant"
                         ? "w-full max-w-none sm:max-w-[75%]"
                         : "max-w-[92%] sm:max-w-[75%]"
                     } sm:px-4 sm:text-sm ${
                       m.role === "user"
-                        ? "bg-brand.teal text-brand.orange rounded-br-none"
-                        : "bg-brand.orangeLight text-brand.teal rounded-bl-none"
+                        ? "bg-[#004b5d] text-white rounded-br-none border-[#012F4D]"
+                        : "bg-[#F8F9FA] text-[#1a1a1a] rounded-bl-none border-gray-200"
                     }`}
                   >
                     {m.role === "assistant" ? (
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
-                        className="prose prose-sm max-w-none space-y-4 prose-p:my-2 prose-ol:my-3 prose-ul:my-0 prose-li:my-1 prose-a:no-underline prose-strong:text-inherit"
+                        className="prose prose-smm max-w-none space-y-4 prose-p:my-2 prose-ol:my-3 prose-ul:my-0 prose-li:my-1 prose-a:no-underline prose-strong:text-inherit"
                         components={{
                           a: ({ node, href, children, ...props }) => {
                             const url = typeof href === "string" ? href : "";
@@ -148,24 +148,10 @@ export default function Page() {
                                 href={url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 rounded-lg border border-brand.teal/20 bg-white px-3 py-2 text-brand.teal shadow-soft transition hover:border-brand.teal/40 hover:shadow"
+                                className="text-[#f05a2b] underline decoration-[#f05a2b]/30 hover:decoration-[#f05a2b] transition-all"
                                 {...props}
                               >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  className="h-4 w-4"
-                                  aria-hidden
-                                >
-                                  <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                  <path d="M15 3h6v6" />
-                                  <path d="M10 14 21 3" />
-                                </svg>
+
                                 <span className="truncate">
                                   {hasCustomText ? children : label}
                                 </span>
@@ -194,9 +180,9 @@ export default function Page() {
                 className="flex justify-start"
               >
                 <div className="flex items-center gap-2 rounded-2xl rounded-bl-none bg-white border border-gray-200 px-4 py-3 shadow-soft" aria-label="Assistant en train d'écrire">
-                  <span className="h-3 w-3 rounded-full bg-[#023C65] animate-bounce [animation-delay:-0.3s]"></span>
-                  <span className="h-3 w-3 rounded-full bg-[#023C65] animate-bounce [animation-delay:-0.15s]"></span>
-                  <span className="h-3 w-3 rounded-full bg-[#023C65] animate-bounce"></span>
+                  <span className="h-3 w-3 rounded-full bg-[#004b5d] animate-bounce [animation-delay:-0.3s]"></span>
+                  <span className="h-3 w-3 rounded-full bg-[#004b5d] animate-bounce [animation-delay:-0.15s]"></span>
+                  <span className="h-3 w-3 rounded-full bg-[#004b5d] animate-bounce"></span>
                 </div>
               </motion.div>
             )}
@@ -223,7 +209,7 @@ export default function Page() {
               onClick={sendMessage}
               disabled={isLoading || !input.trim()}
               aria-label="Envoyer"
-              className="h-11 w-11 rounded-xl bg-[#023C65] text-white shadow-soft transition hover:bg-[#012F4D] disabled:cursor-not-allowed disabled:opacity-100 ring-1 ring-[#023C65]/30 disabled:ring-2 disabled:ring-[#023C65]/40 flex items-center justify-center"
+              className="h-11 w-11 rounded-xl bg-[#004b5d] text-white shadow-soft transition hover:bg-[#012F4D] disabled:cursor-not-allowed disabled:opacity-100 ring-1 ring-[#004b5d]/30 disabled:ring-2 disabled:ring-[#004b5d]/40 flex items-center justify-center"
             >
               <span className="sr-only">Envoyer</span>
               <svg
