@@ -71,7 +71,17 @@ export default function Page() {
       const botMessage: ChatMessage = {
         id: `${Date.now()}-assistant`,
         role: "assistant",
-        content: typeof reply === "string" ? reply : JSON.stringify(reply),
+        content: typeof reply === "string" ? reply
+          .replace(/Titre:/g, '\n\n\n**Titre:**')
+          .replace(/Ville:/g, '\n📍 **Ville:**')
+          .replace(/Superficie:/g, '\n📐 **Superficie:**')
+          .replace(/Nombre de pièces:/g, '\n🚪 **Nombre de pièces:**')
+          .replace(/Prix: \*\*(\d+)\*\*/g, (_, p1) => `\n💰 **Prix:** **${parseInt(p1).toLocaleString('fr-FR')} DA**`)
+          .replace(/Commodités:/g, '\n✨ **Commodités:**')
+          .replace(/Référence:/g, '\n📋 **Référence:**')
+          .replace(/Lien:/g, '\n🔗 **Lien:**')
+          .replace(/\n{3,}/g, '\n\n')
+          .replace(/\n\n🏢/g, '\n\n\n🏢') : JSON.stringify(reply),
       };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error: any) {
@@ -133,7 +143,7 @@ export default function Page() {
                     {m.role === "assistant" ? (
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
-                        className="prose prose-smm max-w-none space-y-4 prose-p:my-2 prose-ol:my-3 prose-ul:my-0 prose-li:my-1 prose-a:no-underline prose-strong:text-inherit"
+                        className="prose prose-lg max-w-none space-y-4 prose-p:my-2 prose-ol:my-3 prose-ul:my-0 prose-li:my-1 prose-a:no-underline prose-strong:text-[#004b5d] prose-strong:font-bold"
                         components={{
                           a: ({ node, href, children, ...props }) => {
                             const url = typeof href === "string" ? href : "";
